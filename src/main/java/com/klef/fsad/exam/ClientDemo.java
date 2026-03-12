@@ -32,13 +32,21 @@ public class ClientDemo {
         System.out.println("Record Inserted");
 
         // DELETE RECORD
-      //  Transaction tx2 = session.beginTransaction();
+        Transaction tx2 = session.beginTransaction();
 
-       // Inventory obj = session.get(Inventory.class,1);
-      //  session.delete(obj);
+        Inventory obj = session.get(Inventory.class,1);
 
-      //  tx2.commit();
-       // System.out.println("Record Deleted");
+        if(obj != null)
+        {
+            session.delete(obj);
+            System.out.println("Record Deleted");
+        }
+        else
+        {
+            System.out.println("Record Not Found");
+        }
+
+        tx2.commit();
 
         session.close();
         sf.close();
